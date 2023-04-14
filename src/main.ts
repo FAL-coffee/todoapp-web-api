@@ -1,10 +1,28 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import { appConfig } from './config/app.config';
+import { ValidationPipe } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 
 async function bootstrap() {
-  const config = appConfig();
   const app = await NestFactory.create(AppModule);
-  await app.listen(config.port);
+
+  // DI container
+  const configService = app.get(ConfigService);
+
+  // global pipes
+  app.useGlobalPipes(new ValidationPipe());
+
+  // CORS
+  app.enableCors({
+    origin: configService.get<string>('CORS_ORIGIN'),
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    credentials: true,
+  });
+
+  // start app
+  const port = configService.get<number>('PORT');
+  await app.listen(port, () => {
+    console.log(`Application listening on port ${port}`);
+  });
 }
 bootstrap();
