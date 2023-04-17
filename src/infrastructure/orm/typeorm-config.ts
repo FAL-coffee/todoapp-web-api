@@ -10,6 +10,7 @@ export class TypeOrmConfigService implements TypeOrmOptionsFactory {
     return {
       name: 'default',
       type: 'postgres',
+      url: this.configService.get<string>('database.url'),
       host: this.configService.get<string>('database.host'),
       port: this.configService.get<number>('database.port'),
       username: this.configService.get<string>('database.username'),
