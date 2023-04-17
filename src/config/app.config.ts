@@ -4,10 +4,10 @@ export const appConfig = () => ({
     origin: process.env.CQRS_ORIGIN || 'http://localhost:3000',
   },
   database: {
-    host: process.env.DATABASE_HOST || 'localhost',
-    port: parseInt(process.env.DATABASE_PORT, 10) || 5432,
-    username: process.env.DATABASE_USERNAME || 'rootuser',
-    password: process.env.DATABASE_PASSWORD || 'passw0rd',
-    database: process.env.DATABASE_NAME || 'todoapp',
+    host: process.env.DB_HOST || 'localhost',
+    port: parseInt(process.env.DB_PORT, 10) || 5432,
+    username: process.env.DB_USERNAME || 'rootuser',
+    password: process.env.DB_PASSWORD || 'passw0rd',
+    name: process.env.DB_NAME || 'todoapp',
   },
 });

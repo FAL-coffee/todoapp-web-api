@@ -14,13 +14,13 @@ async function bootstrap() {
 
   // CORS
   app.enableCors({
-    origin: configService.get<string>('CORS_ORIGIN'),
+    origin: configService.get<string>('cqrsOptions.origin'),
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true,
   });
 
   // start app
-  const port = configService.get<number>('PORT');
+  const port = configService.get<number>('port');
   await app.listen(port, () => {
     console.log(`Application listening on port ${port}`);
   });
