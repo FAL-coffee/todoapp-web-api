@@ -6,10 +6,12 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { TypeOrmConfigService } from './infrastructure/orm/typeorm-config';
 import { TodoModule } from './application/todo/todo.module';
 import { Todo } from './domain/todo/todo.entity';
+import { appConfig } from './config/app.config';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
+      load: [appConfig],
       envFilePath: ['.env', '.env.development'],
     }),
     TypeOrmModule.forRootAsync({
@@ -21,7 +23,6 @@ import { Todo } from './domain/todo/todo.entity';
   ],
   providers: [
     TypeOrmConfigService,
-    ConfigService,
     {
       provide: APP_FILTER,
       useClass: NestHttpExceptionFilter,

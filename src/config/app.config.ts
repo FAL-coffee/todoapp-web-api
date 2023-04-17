@@ -4,6 +4,9 @@ export const appConfig = () => ({
     origin: process.env.CQRS_ORIGIN || 'http://localhost:3000',
   },
   database: {
+    url:
+      process.env.DB_URL ||
+      'postgres://rootuser:passw0rd@localhost:5432/todoapp',
     host: process.env.DB_HOST || 'localhost',
     port: parseInt(process.env.DB_PORT, 10) || 5432,
     username: process.env.DB_USERNAME || 'rootuser',
