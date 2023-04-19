@@ -11,11 +11,9 @@ export class TypeOrmConfigService implements TypeOrmOptionsFactory {
       name: 'default',
       type: 'postgres',
       url: this.configService.get<string>('database.url'),
-      host: this.configService.get<string>('database.host'),
-      port: this.configService.get<number>('database.port'),
-      username: this.configService.get<string>('database.username'),
-      password: this.configService.get<string>('database.password'),
-      database: this.configService.get<string>('database.name'),
+      ssl: {
+        rejectUnauthorized: false,
+      },
       autoLoadEntities: true,
     };
   }
